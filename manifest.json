@@ -1,0 +1,36 @@
+{
+    "name": "Beetroots Shop",
+    "short_name": "BTS",
+    "description": "Progressive Web App that specializes in the sale of beetroots",
+    "icons": [
+        {
+            "src": "assets/img/favicons/favicon-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/favicons/favicon-64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/favicons/favicon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/favicons/favicon-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/favicons/favicon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        } 
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "theme_color": "#57984C",
+    "background_color": "#fff"
+}
