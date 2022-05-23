@@ -39,6 +39,24 @@
 
     <!-- Service Worker  -->
     <script>
+      function askPremission() {
+        return new Promise(function (resolve, reject) {
+          const premissionResult = Notification.requestPermission(function (
+            result
+          ) {
+            resolve(result);
+          });
+
+          if (premissionResult) {
+            premissionResult.then(resolve, reject);
+          }
+        }).then(function (premissionResult) {
+          if (premissionResult != "granted") {
+            throw new Error("We weren`t granted premission.");
+          }
+        });
+      }
+
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js").then(
           function (registration) {
@@ -48,9 +66,27 @@
             console.log("Service worker registration failed:", error);
           }
         );
+
+        navigator.serviceWorker.ready.then((registration) => {
+          if ("PushManager" in window) {
+            document
+              .querySelector("button.subscribe-for-push")
+              .addEventListener("click", () => {
+                askPremission();
+              });
+          }
+        });
       } else {
         console.log("Service workers are not supported.");
       }
+    </script>
+    <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function () {
+        OneSignal.init({
+          appId: "19597141-e6e0-42e0-9622-311e54cae128",
+        });
+      });
     </script>
   </head>
 
@@ -109,6 +145,12 @@
     >
       <div class="container text-center text-md-left">
         <h2>Agridera Seeds and Agriculture Ltd</h2>
+        <button
+          class="subscribe-for-push btn btn-light"
+          id="margin-vertical-20"
+        >
+          Subscribe for push notifications</button
+        ><br />
         <a href="#products" class="btn btn-success">Read more</a>
       </div>
     </section>
